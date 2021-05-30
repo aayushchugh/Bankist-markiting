@@ -13,6 +13,10 @@ const btnScrollTo = document.querySelector('.btn--scroll-to');
 
 const section1 = document.querySelector('#section--1');
 
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
+
 const openModal = e => {
   e.preventDefault();
   modal.classList.remove('hidden');
@@ -58,7 +62,7 @@ btnScrollTo.addEventListener('click', e =>
   section1.scrollIntoView({ behavior: 'smooth' })
 );
 
-
+// navigation smooth scrolling
 document.querySelector('.nav__links').addEventListener('click', function (e) {
   e.preventDefault();
 
@@ -66,4 +70,23 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
     const id = e.target.getAttribute('href');
     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
   }
+});
+
+// Tabbed component
+tabsContainer.addEventListener('click', function (e) {
+  const clicked = e.target.closest('.operations__tab');
+
+  //NOTE: if clicked is not present than stop the function
+  if (!clicked) return;
+
+  // Active Tab
+  //NOTE: first remove class form all and than add to one that is clicked
+  tabs.forEach(t => t.classList.remove('operations__tab--active'));
+  clicked.classList.add('operations__tab--active');
+
+  // Content Area
+  tabsContent.forEach(c => c.classList.remove('operations__content--active'));
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
 });
