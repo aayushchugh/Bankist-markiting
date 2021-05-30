@@ -31,8 +31,13 @@ document.addEventListener('keydown', e => {
 });
 
 const header = document.querySelector('.header');
-const allSections = document.querySelectorAll('.section');
-const allButtons = document.getElementsByTagName('button');
+
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+
+const section1 = document.querySelector('#section--1');
+
+// const allSections = document.querySelectorAll('.section');
+// const allButtons = document.getElementsByTagName('button');
 
 // Add Cookie
 const message = document.createElement('div');
@@ -48,3 +53,8 @@ header.append(message);
 document
   .querySelector('.btn--close-cookie')
   .addEventListener('click', () => message.remove());
+
+btnScrollTo.addEventListener('click', e =>
+  section1.scrollIntoView({ behavior: 'smooth' })
+);
+  
